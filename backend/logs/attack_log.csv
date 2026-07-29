@@ -1,0 +1,4 @@
+Timestamp,Attack Type,Source IP,Severity,Details
+2026-07-28 21:47:27,DDoS,192.168.1.12,High,Detected 11 packets in 1 second(s)
+2026-07-29 00:02:34,Brute Force,192.168.1.100,High,5 failed login attempts in 60 seconds
+2026-07-29 16:53:09,Brute Force,192.168.1.100,High,5 failed login attempts in 60 seconds

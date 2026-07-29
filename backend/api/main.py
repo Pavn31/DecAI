@@ -1,0 +1,82 @@
+import csv
+from pathlib import Path
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+app = FastAPI(
+    title="DecAI API",
+    version="1.0.0",
+    description="Backend API for DecAI Instrusion Detection System"
+)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+ATTACK_LOG = Path("logs/attack_log.csv")
+PACKETS_LOGS = Path("data/packets.csv")
+
+@app.get("/")
+def root():
+    return{
+        "message": "Welcome to DecAI API",
+        "status": "Running"
+    }
+
+@app.get("/attacks")
+def get_attacks():
+    if not ATTACK_LOG.exists():
+        return{
+            "error": "Attack Log File not Found"
+        }
+    attacks = []
+    with ATTACK_LOG.open("r", newline="") as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            attacks.append(row)
+
+    return attacks
+
+@app.get("/stats")
+def get_stats():
+    stats = {}
+
+    stats["total_attacks"] = 0
+    stats["ddos"] = 0
+    stats["brute_force"] = 0
+    stats["high_severity"] = 0
+
+    if not ATTACK_LOG.exists():
+        return stats
+    with ATTACK_LOG.open("r", newline="") as file:
+        reader = csv.DictReader(file)
+
+        for row in reader:
+            stats["total_attacks"] += 1
+            if row["Attack Type"] == "DDoS":
+                stats["ddos"] += 1
+
+            if row["Attack Type"] == "Brute Force":
+                stats["brute_force"] += 1
+
+            if row["Severity"] == "High":
+                stats["high_severity"] += 1
+
+    return stats 
+
+@app.get("/packets")
+def get_packets():
+    packets = []
+    if not PACKETS_LOGS.exists():
+        return packets
+    with PACKETS_LOGS.open("r", newline="") as file:
+        reader = csv.DictReader(file)
+
+        for row in reader:
+            packets.append(row)
+
+    return packets
