@@ -1,4 +1,5 @@
 import AttackChart from "./components/AttackChart";
+import PieAttackChart from "./components/PieAttackChart";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -89,7 +90,15 @@ function App() {
               <tr key={index}>
                 <td>{attack.Timestamp}</td>
                 <td>{attack["Attack Type"]}</td>
-                <td>{attack.Severity}</td>
+                <td>
+                  <span
+                    className={
+                      'severity ${(attack.severity || "low").toLowerCase()}'
+                    }
+                  >
+                    {attack.severity || "High"}
+                  </span>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -97,6 +106,11 @@ function App() {
         <div className="chart-section">
           <h2>Attack Distribution</h2>
           <AttackChart stats={stats}></AttackChart>
+        </div>
+
+        <div className="chart-section">
+          <h2>Attack Breakdown</h2>
+          <PieAttackChart stats={stats} />
         </div>
       </section>
     </div>
