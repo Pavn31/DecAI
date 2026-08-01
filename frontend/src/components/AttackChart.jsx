@@ -12,6 +12,7 @@ function AttackChart({ stats }) {
   const data = [
     { name: "DDoS", attacks: stats.ddos },
     { name: "Brute Force", attacks: stats.brute_force },
+    { name: "SQL Injection", attacks: stats.sql_injection },
   ];
 
   return (

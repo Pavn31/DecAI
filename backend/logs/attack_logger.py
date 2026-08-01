@@ -3,7 +3,7 @@ import os
 from datetime import datetime
 def log_attack(attack_type, source_ip, severity, details):
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    csv_file = "backend/logs/attack_log.csv"
+    csv_file = "logs/attack_log.csv"
 
     file_exists = os.path.isfile(csv_file)
 

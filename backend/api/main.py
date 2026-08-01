@@ -2,7 +2,7 @@ import csv
 from pathlib import Path
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
+from detection.sql_injection import detect_sql_injection
 app = FastAPI(
     title="DecAI API",
     version="1.0.0",
@@ -48,6 +48,7 @@ def get_stats():
     stats["total_attacks"] = 0
     stats["ddos"] = 0
     stats["brute_force"] = 0
+    stats["sql_injection"] = 0
     stats["high_severity"] = 0
 
     if not ATTACK_LOG.exists():
@@ -62,6 +63,9 @@ def get_stats():
 
             if row["Attack Type"] == "Brute Force":
                 stats["brute_force"] += 1
+
+            if row["Attack Type"] == "SQL Injection":
+                stats["sql_injection"] += 1
 
             if row["Severity"] == "High":
                 stats["high_severity"] += 1
@@ -80,3 +84,18 @@ def get_packets():
             packets.append(row)
 
     return packets
+
+@app.get("/test-sqli")
+def test_sqli():
+    payload = "' OR 1=1 --"
+
+    if detect_sql_injection(payload):
+        return {
+            "attack": "SQL Injection",
+            "status": "detected"
+        }
+
+    return {
+        "attack": "SQL Injection",
+        "status": "Safe"
+    }

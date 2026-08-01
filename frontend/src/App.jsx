@@ -11,6 +11,7 @@ function App() {
     total_attacks: 0,
     ddos: 0,
     brute_force: 0,
+    sql_injection: 0,
     high_severity: 0,
   });
   const [backendStatus, setBackendStatus] = useState("Offline");

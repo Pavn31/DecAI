@@ -7,13 +7,14 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const COLORS = ["#22c55e", "#3b82f6", "#f59e0b"]; // Green, Blue, Red
+const COLORS = ["#22c55e", "#3b82f6", "#f59e0b", "#ef4444"]; // Green, Blue, Red, Orange
 
 function PieAttackChart({ stats }) {
   const data = [
     { name: "DDoS", value: stats.ddos },
     { name: "Brute Force", value: stats.brute_force },
     { name: "Port Scan", value: stats.port_scan },
+    { name: "SQL Injection", value: stats.sql_injection },
   ];
 
   return (
@@ -22,6 +23,7 @@ function PieAttackChart({ stats }) {
         <Pie
           data={data}
           dataKey="value"
+          nameKey="name"
           cx="50%"
           cy="50%"
           outerRadius={100}
