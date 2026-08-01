@@ -72,6 +72,31 @@ function App() {
           <h2>High Severity</h2>
           <p>{stats.high_severity}</p>
         </div>
+
+        <div className="card">
+          <h2>SQL Injection</h2>
+          <p>{stats.sql_injection}</p>
+        </div>
+
+        <div className="card">
+          <h2>Port Scan</h2>
+          <p>{stats.port_scan}</p>
+        </div>
+
+        <div className="card">
+          <h2>XSS</h2>
+          <p>{stats.xss}</p>
+        </div>
+
+        <div className="card">
+          <h2>Malware</h2>
+          <p>{stats.malware}</p>
+        </div>
+
+        <div className="card">
+          <h2>Anomaly</h2>
+          <p>{stats.anomaly}</p>
+        </div>
       </section>
 
       <section className="table-section">

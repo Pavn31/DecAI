@@ -7,7 +7,15 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const COLORS = ["#22c55e", "#3b82f6", "#f59e0b", "#ef4444"]; // Green, Blue, Red, Orange
+const COLORS = [
+  "#22c55e",
+  "#3b82f6",
+  "#f59e0b",
+  "#ef4444",
+  "#8b5cf6",
+  "#ec4899",
+  "#686c7f",
+]; // Green, Blue, Red, Orange, Purple, Pink
 
 function PieAttackChart({ stats }) {
   const data = [
@@ -15,6 +23,9 @@ function PieAttackChart({ stats }) {
     { name: "Brute Force", value: stats.brute_force },
     { name: "Port Scan", value: stats.port_scan },
     { name: "SQL Injection", value: stats.sql_injection },
+    { name: "XSS", value: stats.xss },
+    { name: "Malware", value: stats.malware },
+    { name: "Anomaly", value: stats.anomaly },
   ];
 
   return (

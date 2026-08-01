@@ -13,6 +13,10 @@ function AttackChart({ stats }) {
     { name: "DDoS", attacks: stats.ddos },
     { name: "Brute Force", attacks: stats.brute_force },
     { name: "SQL Injection", attacks: stats.sql_injection },
+    { name: "Port Scan", attacks: stats.port_scan },
+    { name: "XSS", attacks: stats.xss },
+    { name: "Malware", attacks: stats.malware },
+    { name: "Anomaly", attacks: stats.anomaly },
   ];
 
   return (

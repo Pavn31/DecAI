@@ -1,4 +1,4 @@
-from backend.logs.attack_logger import log_attack
+from logs.attack_logger import log_attack
 PORT_SCAN_THRESHOLD = 10
 
 ip_port_history = {}

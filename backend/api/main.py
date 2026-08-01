@@ -49,6 +49,10 @@ def get_stats():
     stats["ddos"] = 0
     stats["brute_force"] = 0
     stats["sql_injection"] = 0
+    stats["port_scan"] = 0
+    stats["xss"] = 0
+    stats["malware"] = 0
+    stats["anomaly"] = 0
     stats["high_severity"] = 0
 
     if not ATTACK_LOG.exists():
@@ -67,8 +71,20 @@ def get_stats():
             if row["Attack Type"] == "SQL Injection":
                 stats["sql_injection"] += 1
 
+            if row["Attack Type"] == "Port Scan":
+                stats["port_scan"] += 1
+
+            if row["Attack Type"] == "XSS":
+                stats["xss"] += 1
+
+            if row["Attack Type"] == "Malware":
+                stats["malware"] += 1
+
             if row["Severity"] == "High":
                 stats["high_severity"] += 1
+
+            if row["Attack Type"] == "Anomaly":
+                stats["anomaly"] += 1
 
     return stats 
 
