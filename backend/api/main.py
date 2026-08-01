@@ -16,9 +16,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-ATTACK_LOG = Path("logs/attack_log.csv")
-PACKETS_LOGS = Path("data/packets.csv")
+BASE_DIR = Path(__file__).resolve().parents[2]
+ATTACK_LOG = BASE_DIR / "backend" / "logs" / "attack_log.csv"
+PACKETS_LOGS = BASE_DIR / "data" / "packets.csv"
 
 @app.get("/")
 def root():
@@ -91,13 +91,20 @@ def get_stats():
 @app.get("/packets")
 def get_packets():
     packets = []
+    
     if not PACKETS_LOGS.exists():
         return packets
     with PACKETS_LOGS.open("r", newline="") as file:
         reader = csv.DictReader(file)
 
         for row in reader:
-            packets.append(row)
+            packets.append({
+                "time": row.get("Timestamp", ""),
+                "source_ip": row.get("Source IP", ""),
+                "destination_ip": row.get("Destination IP", ""),
+                "protocol": row.get("Protocol", ""),
+                "status": row.get("Direction", "Captured")
+            })
 
     return packets
 

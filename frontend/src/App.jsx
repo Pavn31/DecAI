@@ -1,6 +1,8 @@
 import AttackChart from "./components/AttackChart";
 import PieAttackChart from "./components/PieAttackChart";
-import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 
 import "./App.css";
@@ -14,8 +16,9 @@ function App() {
     sql_injection: 0,
     high_severity: 0,
   });
+  const [packets, setPackets] = useState([]);
   const [backendStatus, setBackendStatus] = useState("Offline");
-
+  const lastAttack = useRef("");
   const fetchData = () => {
     axios
       .get("http://127.0.0.1:8000/stats")
@@ -31,6 +34,25 @@ function App() {
       .get("http://127.0.0.1:8000/attacks")
       .then((response) => {
         setAttacks(response.data);
+        if (response.data.length > 0) {
+          const latest = response.data[response.data.length - 1];
+          const attackID = latest.Timestamp + latest["Attack Type"];
+          if (lastAttack.current !== attackID) {
+            lastAttack.current = attackID;
+
+            toast.error(
+              `🚨 ${latest["Attack Type"]} Detected\nSeverity: ${latest.severity || "High"}`,
+            );
+          }
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    axios
+      .get("http://127.0.0.1:8000/packets")
+      .then((response) => {
+        setPackets(response.data);
       })
       .catch((error) => {
         console.error(error);
@@ -112,7 +134,7 @@ function App() {
           </thead>
 
           <tbody>
-            {attacks.map((attack, index) => (
+            {(Array.isArray(attacks) ? attacks : []).map((attack, index) => (
               <tr key={index}>
                 <td>{attack.Timestamp}</td>
                 <td>{attack["Attack Type"]}</td>
@@ -129,6 +151,33 @@ function App() {
             ))}
           </tbody>
         </table>
+        <section className="table-section">
+          <h2>Live Packet Monitor</h2>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Source IP</th>
+                <th>Destination IP</th>
+                <th>Protocol</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {packets.map((packet, index) => (
+                <tr key={index}>
+                  <td>{packet.time}</td>
+                  <td>{packet.source_ip}</td>
+                  <td>{packet.destination_ip}</td>
+                  <td>{packet.protocol}</td>
+                  <td>{packet.status}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </section>
         <div className="chart-section">
           <h2>Attack Distribution</h2>
           <AttackChart stats={stats}></AttackChart>
@@ -139,6 +188,7 @@ function App() {
           <PieAttackChart stats={stats} />
         </div>
       </section>
+      <ToastContainer position="top-right" autoClose={4000} theme="dark" />
     </div>
   );
 }

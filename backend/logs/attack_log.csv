@@ -33,3 +33,68 @@ Timestamp,Attack Type,Source IP,Severity,Details
 2026-08-01 14:21:49,Anomaly,192.168.1.105,High,Abnormal traffic detected (1200 packets/second)
 2026-08-01 14:21:49,Anomaly,192.168.1.105,High,Abnormal traffic detected (1800 packets/second)
 2026-08-01 14:21:49,Anomaly,192.168.1.105,High,Abnormal traffic detected (2500 packets/second)
+2026-08-01 15:35:57,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 15:35:57,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 15:35:57,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-01 15:36:11,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 15:36:11,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 15:36:11,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-01 16:07:26,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 16:07:26,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 16:07:26,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-01 16:09:47,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 16:09:47,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 16:09:47,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-01 16:29:57,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 16:29:57,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 16:29:57,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-01 16:30:13,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 16:30:13,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 16:30:13,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-01 16:32:16,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 16:32:16,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 16:32:16,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-01 17:01:41,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 17:01:41,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 17:01:41,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>2026-08-01 17:15:01,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 17:15:01,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 17:15:01,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-01 17:17:12,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 17:17:12,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 17:17:12,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-01 17:17:23,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 17:17:23,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 17:17:23,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-01 17:19:07,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 17:19:07,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 17:19:07,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-01 17:21:00,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 17:21:00,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 17:21:00,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-01 17:21:10,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 17:21:10,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 17:21:10,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-01 17:22:40,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 17:22:40,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 17:22:40,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-01 17:24:12,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 17:24:12,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 17:24:12,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-01 17:24:48,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 17:24:48,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 17:24:48,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-01 17:28:33,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 17:28:33,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 17:28:33,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-01 17:28:58,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 17:28:58,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 17:28:58,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-01 17:30:23,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 17:30:23,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 17:30:23,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-01 17:33:23,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 17:33:23,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 17:33:23,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-01 17:33:49,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 17:33:49,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 17:33:49,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
