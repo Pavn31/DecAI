@@ -19,6 +19,8 @@ function App() {
   const [packets, setPackets] = useState([]);
   const [backendStatus, setBackendStatus] = useState("Offline");
   const lastAttack = useRef("");
+  const [searchTerm, setSearchTerm] = useState("");
+  const [severityFilter, setSeverityFilter] = useState("All");
   const fetchData = () => {
     axios
       .get("http://127.0.0.1:8000/stats")
@@ -121,6 +123,26 @@ function App() {
         </div>
       </section>
 
+      <div className="search-controls">
+        <input
+          type="text"
+          placeholder="Search by Attack Type or Severity"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className="search-input"
+        />
+
+        <select
+          value={severityFilter}
+          onChange={(e) => setSeverityFilter(e.target.value)}
+          className="search-input"
+        >
+          <option value="All">All</option>
+          <option value="High">High</option>
+          <option value="Medium">Medium</option>
+          <option value="Low">Low</option>
+        </select>
+      </div>
       <section className="table-section">
         <h2>Recent Attacks</h2>
 
@@ -134,21 +156,45 @@ function App() {
           </thead>
 
           <tbody>
-            {(Array.isArray(attacks) ? attacks : []).map((attack, index) => (
-              <tr key={index}>
-                <td>{attack.Timestamp}</td>
-                <td>{attack["Attack Type"]}</td>
-                <td>
-                  <span
-                    className={
-                      'severity ${(attack.severity || "low").toLowerCase()}'
-                    }
-                  >
-                    {attack.severity || "High"}
-                  </span>
-                </td>
-              </tr>
-            ))}
+            {(Array.isArray(attacks) ? attacks : [])
+              .filter((attack) => {
+                const matchesSearch =
+                  (attack["Attack Type"] || "")
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase()) ||
+                  (attack["Severity"] || attack.severity || "")
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase()) ||
+                  (attack["Source IP"] || "")
+                    .toLowerCase()
+                    .includes(searchTerm.toLowerCase());
+
+                const matchesSeverity =
+                  severityFilter === "All" ||
+                  (
+                    attack["Severity"] ||
+                    attack.severity ||
+                    ""
+                  ).toLowerCase() === severityFilter.toLowerCase();
+
+                return matchesSearch && matchesSeverity;
+              })
+
+              .map((attack, index) => (
+                <tr key={index}>
+                  <td>{attack.Timestamp}</td>
+                  <td>{attack["Attack Type"]}</td>
+                  <td>
+                    <span
+                      className={
+                        'severity ${(attack.Severity || "low").toLowerCase()}'
+                      }
+                    >
+                      {attack["Severity"] || "High"}
+                    </span>
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
         <section className="table-section">

@@ -98,3 +98,15 @@ Timestamp,Attack Type,Source IP,Severity,Details
 2026-08-01 17:33:49,XSS,192.168.1.102,High,<script>alert('XSS')</script>
 2026-08-01 17:33:49,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
 2026-08-01 17:33:49,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-01 17:35:56,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 17:35:56,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 17:35:56,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-01 17:36:04,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 17:36:04,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 17:36:04,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-01 17:36:38,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 17:36:38,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 17:36:38,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-01 17:36:52,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-01 17:36:52,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-01 17:36:52,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
