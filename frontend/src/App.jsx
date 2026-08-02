@@ -19,8 +19,14 @@ function App() {
   const [packets, setPackets] = useState([]);
   const [backendStatus, setBackendStatus] = useState("Offline");
   const lastAttack = useRef("");
+  const downloadLogs = () => {
+    window.open("http://127.0.0.1:8000/download_logs", "_blank");
+  };
+
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectAttack, setSelectedAttack] = useState(null);
   const [severityFilter, setSeverityFilter] = useState("All");
+
   const fetchData = () => {
     axios
       .get("http://127.0.0.1:8000/stats")
@@ -43,7 +49,11 @@ function App() {
             lastAttack.current = attackID;
 
             toast.error(
-              `🚨 ${latest["Attack Type"]} Detected\nSeverity: ${latest.severity || "High"}`,
+              `🚨 ${latest["Attack Type"]} Detected\nSeverity: ${[latest.severity]}`,
+              {
+                position: "top-right",
+                autoClose: 4000,
+              },
             );
           }
         }
@@ -124,6 +134,9 @@ function App() {
       </section>
 
       <div className="search-controls">
+        <button onClick={downloadLogs} className="download-btn">
+          ⬇️ Download Attack Logs
+        </button>
         <input
           type="text"
           placeholder="Search by Attack Type or Severity"
@@ -181,7 +194,11 @@ function App() {
               })
 
               .map((attack, index) => (
-                <tr key={index}>
+                <tr
+                  key={index}
+                  onClick={() => setSelectedAttack(attack)}
+                  style={{ cursor: "pointer" }}
+                >
                   <td>{attack.Timestamp}</td>
                   <td>{attack["Attack Type"]}</td>
                   <td>
@@ -234,6 +251,35 @@ function App() {
           <PieAttackChart stats={stats} />
         </div>
       </section>
+      {selectAttack && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h2>Attack Details</h2>
+
+            <p>
+              <strong>Time:</strong> {selectAttack["Timestamp"]}
+            </p>
+            <p>
+              <strong>Attack:</strong> {selectAttack["Attack Type"]}
+            </p>
+            <p>
+              <strong>Source IP:</strong> {selectAttack["Source IP"]}
+            </p>
+            <p>
+              <strong>Severity:</strong> {selectAttack["Severity"]}
+            </p>
+            <p>
+              <strong>Details:</strong> {selectAttack["Details"]}
+            </p>
+            <button
+              className="download-btn"
+              onClick={() => setSelectedAttack(null)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
       <ToastContainer position="top-right" autoClose={4000} theme="dark" />
     </div>
   );

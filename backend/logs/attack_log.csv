@@ -110,3 +110,16 @@ Timestamp,Attack Type,Source IP,Severity,Details
 2026-08-01 17:36:52,XSS,192.168.1.102,High,<script>alert('XSS')</script>
 2026-08-01 17:36:52,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
 2026-08-01 17:36:52,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-01 19:33:06,Brute Force,192.168.1.100,High,5 failed login attempts in 60 seconds
+2026-08-02 12:23:07,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-02 12:23:07,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-02 12:23:07,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-02 12:30:48,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-02 12:30:48,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-02 12:30:48,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-02 12:30:59,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-02 12:30:59,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-02 12:30:59,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-02 12:31:32,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-02 12:31:32,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-02 12:31:32,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>

@@ -25,7 +25,7 @@ function AttackChart({ stats }) {
       <XAxis dataKey="name" />
       <YAxis />
       <Tooltip />
-      <Bar dataKey="attacks" fill="#4ade80" radius={[8, 8, 0, 0]} />
+      <Bar dataKey="attacks" fill="#de4ac0" radius={[8, 8, 0, 0]} />
     </BarChart>
   );
 }

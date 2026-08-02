@@ -108,6 +108,15 @@ def get_packets():
 
     return packets
 
+from fastapi.responses import FileResponse
+
+@app.get("/download_logs")
+def download_logs():
+    return FileResponse(
+        ATTACK_LOG,
+        media_type="text/csv",
+        filename="attack_log.csv"
+    )
 @app.get("/test-sqli")
 def test_sqli():
     payload = "' OR 1=1 --"

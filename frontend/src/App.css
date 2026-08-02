@@ -199,3 +199,65 @@ tr:hover {
   border-color: #3b82f6;
   box-shadow: 0 0 10px rgba(59, 130, 246, 0.35);
 }
+.download-btn {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s rgba(59, 130, 246, 0.3);
+}
+
+.download-btn:hover {
+  background: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.45);
+}
+
+.download-btn:active {
+  transform: scale(0.97);
+}
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  backdrop-filter: blur(6px);
+}
+
+.modal {
+  width: 500px;
+  max-width: 90%;
+  background: #1b2431;
+  color: white;
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+  animation: popup 0.25s ease;
+}
+.modal h2 {
+  margin-bottom: 20px;
+}
+.modal p {
+  margin: 12px 0;
+  word-break: break-word;
+}
+.modal strong {
+  color: #4ea8ff;
+}
+@keyframes popup {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
