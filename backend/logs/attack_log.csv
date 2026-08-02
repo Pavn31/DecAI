@@ -123,3 +123,41 @@ Timestamp,Attack Type,Source IP,Severity,Details
 2026-08-02 12:31:32,XSS,192.168.1.102,High,<script>alert('XSS')</script>
 2026-08-02 12:31:32,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
 2026-08-02 12:31:32,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-02 12:49:53,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-02 12:49:53,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-02 12:49:53,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-02 13:55:52,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-02 13:55:52,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-02 13:55:52,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-02 13:56:14,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-02 13:56:14,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-02 13:56:14,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-02 13:56:41,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-02 13:56:41,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-02 13:56:41,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-02 13:57:11,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-02 13:57:11,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-02 13:57:11,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-02 13:57:21,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-02 13:57:21,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-02 13:57:21,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-02 15:52:53,Anomaly,192.168.1.105,High,Abnormal traffic detected (1200 packets/second)
+2026-08-02 15:52:53,Anomaly,192.168.1.105,High,Abnormal traffic detected (1800 packets/second)
+2026-08-02 15:52:53,Anomaly,192.168.1.105,High,Abnormal traffic detected (2500 packets/second)
+2026-08-02 16:05:26,Brute Force,192.168.1.100,High,5 failed login attempts in 60 seconds
+2026-08-02 16:06:12,Malware,192.168.1.103,High,trojan.exe
+2026-08-02 16:06:12,Malware,192.168.1.103,High,virus.dll
+2026-08-02 16:06:12,Malware,192.168.1.103,High,backdoor.bat
+2026-08-02 16:07:00,Port Scan,192.168.1.104,Medium,10 unique ports scanned
+2026-08-02 16:07:00,Port Scan,192.168.1.104,Medium,10 unique ports scanned
+2026-08-02 16:07:38,SQL Injection,192.168.1.101,High,' OR 1=1 --
+2026-08-02 16:07:38,SQL Injection,192.168.1.101,High,"UNION SELECT username, password FROM users"
+2026-08-02 16:07:38,SQL Injection,192.168.1.101,High,DROP TABLE users
+2026-08-02 16:07:38,SQL Injection,192.168.1.101,High,DELETE FROM users WHERE id=1
+2026-08-02 16:08:05,XSS,192.168.1.102,High,<script>alert('XSS')</script>
+2026-08-02 16:08:05,XSS,192.168.1.102,High,<img src=x onerror=alert('Hacked')>
+2026-08-02 16:08:05,XSS,192.168.1.102,High,<iframe src='evil.com'></iframe>
+2026-08-02 16:09:00,SQL Injection,192.168.1.101,High,' OR 1=1 --
+2026-08-02 16:09:00,SQL Injection,192.168.1.101,High,"UNION SELECT username, password FROM users"
+2026-08-02 16:09:00,SQL Injection,192.168.1.101,High,DROP TABLE users
+2026-08-02 16:09:00,SQL Injection,192.168.1.101,High,DELETE FROM users WHERE id=1

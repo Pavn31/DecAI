@@ -1,4 +1,4 @@
-from backend.logs.attack_logger import log_attack
+from logs.attack_logger import log_attack
 import time
 from collections import defaultdict
 attempt_history = defaultdict(list)

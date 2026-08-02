@@ -4,7 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
-
+import CountUp from "react-countup";
 import "./App.css";
 
 function App() {
@@ -25,7 +25,9 @@ function App() {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [selectAttack, setSelectedAttack] = useState(null);
+  const [countdown, setCountdown] = useState(3);
   const [severityFilter, setSeverityFilter] = useState("All");
+  const [highlightAttack, setHighlightAttack] = useState("");
 
   const fetchData = () => {
     axios
@@ -47,6 +49,10 @@ function App() {
           const attackID = latest.Timestamp + latest["Attack Type"];
           if (lastAttack.current !== attackID) {
             lastAttack.current = attackID;
+            setHighlightAttack(attackID);
+            setTimeout(() => {
+              setHighlightAttack("");
+            }, 3000);
 
             toast.error(
               `🚨 ${latest["Attack Type"]} Detected\nSeverity: ${[latest.severity]}`,
@@ -72,20 +78,22 @@ function App() {
   };
   useEffect(() => {
     fetchData();
-
+    const timer = setInterval(() => {
+      setCountdown((prev) => (prev === 1 ? 3 : prev - 1));
+    }, 1000);
     const interval = setInterval(fetchData, 3000);
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearInterval(timer);
+    };
   }, []);
   return (
     <div className="app">
       <header className="header">
         <h1 className="title">DecAI</h1>
         <p className="subtitle">AI-Powered Instrusion Detection System</p>
-        <p className={backendStatus == "Online" ? "online" : "offline"}>
-          <span className="status-dot"></span>
-          Backend: {backendStatus}
-        </p>
       </header>
+      <div className="refresh-timer">🔄 Refreshing in {countdown}s</div>
       <section className="stats">
         <div className="card">
           <h2>Total Attacks</h2>
@@ -132,7 +140,15 @@ function App() {
           <p>{stats.anomaly}</p>
         </div>
       </section>
-
+      <div className="backend-status">
+        <span
+          className={
+            backendStatus === "Online" ? "status-online" : "status-offline"
+          }
+        >
+          ● {backendStatus}
+        </span>
+      </div>
       <div className="search-controls">
         <button onClick={downloadLogs} className="download-btn">
           ⬇️ Download Attack Logs
@@ -196,18 +212,20 @@ function App() {
               .map((attack, index) => (
                 <tr
                   key={index}
+                  className={
+                    highlightAttack === attack.Timestamp + attack["Attack Type"]
+                      ? "highlight-row"
+                      : ""
+                  }
                   onClick={() => setSelectedAttack(attack)}
-                  style={{ cursor: "pointer" }}
                 >
                   <td>{attack.Timestamp}</td>
                   <td>{attack["Attack Type"]}</td>
                   <td>
                     <span
-                      className={
-                        'severity ${(attack.Severity || "low").toLowerCase()}'
-                      }
+                      className={`severity ${(attack["Severity"] || "Low").toLowerCase()}`}
                     >
-                      {attack["Severity"] || "High"}
+                      {attack["Severity"] || "Low"}
                     </span>
                   </td>
                 </tr>

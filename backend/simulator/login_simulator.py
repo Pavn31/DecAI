@@ -1,5 +1,5 @@
-from backend.detection.brute_force import detect_brute_force
-from backend.logs.attack_logger import log_attack
+from detection.brute_force import detect_brute_force
+from logs.attack_logger import log_attack
 source_ip = "192.168.1.100"
 while True:
     username = input("Username: ")
