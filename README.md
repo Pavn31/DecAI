@@ -147,19 +147,19 @@ http://localhost:5173
 ## 📸 Screenshots
 
 ### Dashboard
-![Dashboard](docs/screenshots/dashboard.png)
+![Dashboard](Docs/screenshots/dashboard.png)
 
 ### Live Packet Monitor
 
-![Live Packet Monitor](docs/screenshots/live-packet-monitor.png)
+![Live Packet Monitor](Docs/screenshots/live-packet-monitor.png)
 
 ### Attack Detection
 
-![Attack Detection](docs/screenshots/attack-detection.png)
+![Attack Detection](Docs/screenshots/attack-detection.png)
 
 ### Charts
 
-![Charts](docs/screenshots/charts.png)
+![Charts](Docs/screenshots/charts.png)
 
 ---
 
