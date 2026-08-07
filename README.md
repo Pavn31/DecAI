@@ -93,7 +93,7 @@ DecAI/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/DecAI.git
+git clone https://github.com/Pavn31/DecAI.git
 cd DecAI
 ```
 
