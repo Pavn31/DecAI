@@ -1,13 +1,13 @@
 import AttackChart from "./components/AttackChart";
 import PieAttackChart from "./components/PieAttackChart";
 import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import RecentActivity from "./components/RecentActivity";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import CountUp from "react-countup";
 import "./App.css";
 import Notification from "./components/Notification";
-const alertSound = new Audio("/sounds/alert.mp3");
+import AttackTimeline from "./components/AttackTimeline";
 
 function App() {
   const [attacks, setAttacks] = useState([]);
@@ -64,10 +64,7 @@ function App() {
               message: `${latest["Attack Type"]} from ${latest["Source IP"]}`,
               severity: latest["Severity"] || "Low",
             });
-            if ((latest["Severity"] || "").toLowerCase() === "high") {
-              alertSound.currentTime = 0;
-              alertSound.play().catch(() => {});
-            }
+
             setTimeout(() => {
               setNotification(null);
             }, 5000);
@@ -90,14 +87,6 @@ function App() {
   };
   useEffect(() => {
     fetchData();
-    const timer = setInterval(() => {
-      setCountdown((prev) => (prev === 1 ? 3 : prev - 1));
-    }, 1000);
-    const interval = setInterval(fetchData, 3000);
-    return () => {
-      clearInterval(interval);
-      clearInterval(timer);
-    };
   }, []);
   if (loading) {
     return (
@@ -112,9 +101,8 @@ function App() {
       <Notification notification={notification} />
       <header className="header">
         <h1 className="title">DecAI</h1>
-        <p className="subtitle">AI-Powered Instrusion Detection System</p>
+        <p className="subtitle">AI-Powered Intrusion Detection System</p>
       </header>
-      <div className="refresh-timer">🔄 Refreshing in {countdown}s</div>
       <section className="stats">
         <div className="card">
           <h2>Total Attacks</h2>
@@ -261,6 +249,9 @@ function App() {
             )}
           </tbody>
         </table>
+        <AttackTimeline attacks={attacks} />
+
+        <RecentActivity attacks={attacks} />
         <section className="table-section">
           <h2>Live Packet Monitor</h2>
 
