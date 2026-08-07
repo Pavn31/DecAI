@@ -45,7 +45,7 @@ def get_attacks() -> List[Dict[str, Any]]:
     try:
         with ATTACK_LOG.open("r", newline="", encoding="utf-8") as file:
             reader = csv.DictReader(file)
-            return list(reader)
+            return [row for row in reader if None not in row]
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Failed to read attack log: {str(e)}")
 
