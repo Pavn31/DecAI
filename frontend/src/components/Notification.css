@@ -1,0 +1,46 @@
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 320px;
+  padding: 16px;
+  border-radius: 12px;
+  color: white;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  animation: slideIn 0.4s ease;
+  z-index: 9999;
+}
+
+.notification.high {
+  background: #dc2626;
+}
+
+.notification.medium {
+  background: #d97706;
+}
+
+.notification.low {
+  background: #16a34a;
+}
+
+.notification h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+
+.notification p {
+  margin: 0;
+  font-size: 14px;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

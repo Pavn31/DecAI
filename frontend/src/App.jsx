@@ -6,6 +6,8 @@ import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import CountUp from "react-countup";
 import "./App.css";
+import Notification from "./components/Notification";
+const alertSound = new Audio("/sounds/alert.mp3");
 
 function App() {
   const [attacks, setAttacks] = useState([]);
@@ -25,6 +27,7 @@ function App() {
 
   const [searchTerm, setSearchTerm] = useState("");
   const [selectAttack, setSelectedAttack] = useState(null);
+  const [notification, setNotification] = useState(null);
   const [countdown, setCountdown] = useState(3);
   const [severityFilter, setSeverityFilter] = useState("All");
   const [highlightAttack, setHighlightAttack] = useState("");
@@ -56,13 +59,18 @@ function App() {
               setHighlightAttack("");
             }, 3000);
 
-            toast.error(
-              `🚨 ${latest["Attack Type"]} Detected\nSeverity: ${[latest.severity]}`,
-              {
-                position: "top-right",
-                autoClose: 4000,
-              },
-            );
+            setNotification({
+              title: "⚠️ New Attack Detected",
+              message: `${latest["Attack Type"]} from ${latest["Source IP"]}`,
+              severity: latest["Severity"] || "Low",
+            });
+            if ((latest["Severity"] || "").toLowerCase() === "high") {
+              alertSound.currentTime = 0;
+              alertSound.play().catch(() => {});
+            }
+            setTimeout(() => {
+              setNotification(null);
+            }, 5000);
           }
         }
       })
@@ -101,6 +109,7 @@ function App() {
   }
   return (
     <div className="app">
+      <Notification notification={notification} />
       <header className="header">
         <h1 className="title">DecAI</h1>
         <p className="subtitle">AI-Powered Instrusion Detection System</p>
