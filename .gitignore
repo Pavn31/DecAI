@@ -1,8 +1,22 @@
-.venv/
+#Python
 __pycache__/
-*.__pyc
+*.pyc
+venv/
 .env
-.vscode/
-.idea/
 
+#Node
 node_modules/
+dist/
+
+#VS Code
+.vscode/
+
+#OS Files
+.DS_Store
+Thumbs.db
+
+#Logs
+.log
+
+#Environment
+.env.local
