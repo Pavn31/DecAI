@@ -148,19 +148,18 @@ http://localhost:5173
 
 ### Dashboard
 
-> _(Add your dashboard screenshot here)_
 
 ### Live Packet Monitor
 
-> _(Add packet monitor screenshot here)_
+
 
 ### Attack Detection
 
-> _(Add recent attacks screenshot here)_
+
 
 ### Charts
 
-> _(Add bar chart and pie chart screenshots here)_
+
 
 ---
 
