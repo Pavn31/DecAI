@@ -1,13 +1,14 @@
 import AttackChart from "./components/AttackChart";
 import PieAttackChart from "./components/PieAttackChart";
 import { ToastContainer, toast } from "react-toastify";
-import RecentActivity from "./components/RecentActivity";
+import BackendStatus from "./components/BackendStatus";
 import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import CountUp from "react-countup";
 import "./App.css";
 import Notification from "./components/Notification";
 import AttackTimeline from "./components/AttackTimeline";
+import LoadingSkeleton from "./components/LoadingSkeleton";
 
 function App() {
   const [attacks, setAttacks] = useState([]);
@@ -31,6 +32,7 @@ function App() {
   const [countdown, setCountdown] = useState(3);
   const [severityFilter, setSeverityFilter] = useState("All");
   const [highlightAttack, setHighlightAttack] = useState("");
+
   const [loading, setLoading] = useState(true);
 
   const fetchData = () => {
@@ -89,12 +91,7 @@ function App() {
     fetchData();
   }, []);
   if (loading) {
-    return (
-      <div className="loading-screen">
-        <div className="loader"></div>
-        <h2>Loading DecAI....</h2>
-      </div>
-    );
+    return <LoadingSkeleton />;
   }
   return (
     <div className="app">
@@ -103,6 +100,12 @@ function App() {
         <h1 className="title">DecAI</h1>
         <p className="subtitle">AI-Powered Intrusion Detection System</p>
       </header>
+      <BackendStatus />
+      {backendStatus === "Offline" && (
+        <div className="offline-banner">
+          🔴 Backend Offline - Unable to connect to DecAI server
+        </div>
+      )}
       <section className="stats">
         <div className="card">
           <h2>Total Attacks</h2>
@@ -149,15 +152,7 @@ function App() {
           <p>{stats.anomaly}</p>
         </div>
       </section>
-      <div className="backend-status">
-        <span
-          className={
-            backendStatus === "Online" ? "status-online" : "status-offline"
-          }
-        >
-          ● {backendStatus}
-        </span>
-      </div>
+
       <div className="search-controls">
         <button onClick={downloadLogs} className="download-btn">
           ⬇️ Download Attack Logs
@@ -251,7 +246,6 @@ function App() {
         </table>
         <AttackTimeline attacks={attacks} />
 
-        <RecentActivity attacks={attacks} />
         <section className="table-section">
           <h2>Live Packet Monitor</h2>
 
