@@ -28,8 +28,10 @@ function App() {
   const [countdown, setCountdown] = useState(3);
   const [severityFilter, setSeverityFilter] = useState("All");
   const [highlightAttack, setHighlightAttack] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const fetchData = () => {
+    setLoading(true);
     axios
       .get("http://127.0.0.1:8000/stats")
       .then((response) => {
@@ -71,9 +73,11 @@ function App() {
       .get("http://127.0.0.1:8000/packets")
       .then((response) => {
         setPackets(response.data);
+        setLoading(false);
       })
       .catch((error) => {
         console.error(error);
+        setLoading(false);
       });
   };
   useEffect(() => {
@@ -87,6 +91,14 @@ function App() {
       clearInterval(timer);
     };
   }, []);
+  if (loading) {
+    return (
+      <div className="loading-screen">
+        <div className="loader"></div>
+        <h2>Loading DecAI....</h2>
+      </div>
+    );
+  }
   return (
     <div className="app">
       <header className="header">
@@ -185,51 +197,59 @@ function App() {
           </thead>
 
           <tbody>
-            {(Array.isArray(attacks) ? attacks : [])
-              .filter((attack) => {
-                const matchesSearch =
-                  (attack["Attack Type"] || "")
-                    .toLowerCase()
-                    .includes(searchTerm.toLowerCase()) ||
-                  (attack["Severity"] || attack.severity || "")
-                    .toLowerCase()
-                    .includes(searchTerm.toLowerCase()) ||
-                  (attack["Source IP"] || "")
-                    .toLowerCase()
-                    .includes(searchTerm.toLowerCase());
+            {(Array.isArray(attacks) ? attacks : []).length === 0 ? (
+              <tr>
+                <td colSpan="3" className="empty-state">
+                  🛡️ No attacks detected yet.
+                </td>
+              </tr>
+            ) : (
+              (Array.isArray(attacks) ? attacks : [])
+                .filter((attack) => {
+                  const matchesSearch =
+                    (attack["Attack Type"] || "")
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase()) ||
+                    (attack["Severity"] || attack.severity || "")
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase()) ||
+                    (attack["Source IP"] || "")
+                      .toLowerCase()
+                      .includes(searchTerm.toLowerCase());
 
-                const matchesSeverity =
-                  severityFilter === "All" ||
-                  (
-                    attack["Severity"] ||
-                    attack.severity ||
-                    ""
-                  ).toLowerCase() === severityFilter.toLowerCase();
+                  const matchesSeverity =
+                    severityFilter === "All" ||
+                    (
+                      attack["Severity"] ||
+                      attack.severity ||
+                      ""
+                    ).toLowerCase() === severityFilter.toLowerCase();
 
-                return matchesSearch && matchesSeverity;
-              })
-
-              .map((attack, index) => (
-                <tr
-                  key={index}
-                  className={
-                    highlightAttack === attack.Timestamp + attack["Attack Type"]
-                      ? "highlight-row"
-                      : ""
-                  }
-                  onClick={() => setSelectedAttack(attack)}
-                >
-                  <td>{attack.Timestamp}</td>
-                  <td>{attack["Attack Type"]}</td>
-                  <td>
-                    <span
-                      className={`severity ${(attack["Severity"] || "Low").toLowerCase()}`}
-                    >
-                      {attack["Severity"] || "Low"}
-                    </span>
-                  </td>
-                </tr>
-              ))}
+                  return matchesSearch && matchesSeverity;
+                })
+                .map((attack, index) => (
+                  <tr
+                    key={index}
+                    className={
+                      highlightAttack ===
+                      attack.Timestamp + attack["Attack Type"]
+                        ? "highlight-row"
+                        : ""
+                    }
+                    onClick={() => setSelectedAttack(attack)}
+                  >
+                    <td>{attack.Timestamp}</td>
+                    <td>{attack["Attack Type"]}</td>
+                    <td>
+                      <span
+                        className={`severity ${(attack["Severity"] || "Low").toLowerCase()}`}
+                      >
+                        {attack["Severity"] || "Low"}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+            )}
           </tbody>
         </table>
         <section className="table-section">
